@@ -1,0 +1,44 @@
+/* Keep your global font and page background */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+}
+
+/* Keep generic page padding (won’t affect form centering) */
+.container {
+  padding: 20px;
+}
+
+/* Headings look good */
+h1, h2, h3 {
+  color: #222;
+}
+
+/* Buttons — okay to keep */
+button {
+  background-color: #195fa9;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* ✅ Add this small rule to prevent global container styles from stretching form */
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* centers vertically */
+}
+
+/* Optional: Add subtle shadow for visual depth */
+.form-container {
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}

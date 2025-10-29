@@ -1,0 +1,159 @@
+/* ---------- Full Background ---------- */
+.form-bg {
+  min-height: 100vh;
+  background: linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    ),
+    url("../assets/projectpic/dash.jpg") center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px 20px;
+}
+
+/* ---------- Container ---------- */
+.form-container {
+  width: 100%;
+  max-width: 620px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(18px);
+  padding: 40px 45px;
+  border-radius: 24px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  color: white;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  transition: transform 0.3s ease;
+}
+
+.form-container:hover {
+  transform: translateY(-4px);
+}
+
+/* ---------- Title ---------- */
+.form-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(90deg, #00b4d8, #48cae4, #90e0ef);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 25px;
+}
+
+/* ---------- Step Indicator ---------- */
+.step-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.step {
+  flex: 1;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.25);
+  color: #e5e7eb;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 0 4px;
+  transition: all 0.3s ease;
+}
+
+.active-step {
+  background: linear-gradient(90deg, #00b4d8, #0096c7);
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 180, 216, 0.4);
+}
+
+/* ---------- Form Inputs ---------- */
+.form-step label {
+  display: block;
+  margin: 10px 0 6px;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+.form-step input[type="text"],
+.form-step input[type="email"],
+.form-step input[type="tel"],
+.form-step input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  margin-bottom: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #111;
+  transition: all 0.3s ease;
+}
+
+.form-step input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 180, 216, 0.4);
+}
+
+/* ---------- Buttons ---------- */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-btn {
+  background-color: rgba(209, 213, 219, 0.9);
+}
+
+.back-btn:hover {
+  background-color: rgba(156, 163, 175, 0.9);
+  transform: scale(1.05);
+}
+
+.next-btn {
+  background: linear-gradient(90deg, #00b4d8, #0096c7);
+  color: white;
+}
+
+.next-btn:hover {
+  transform: scale(1.05);
+}
+
+.submit-btn {
+  background: linear-gradient(90deg, #16a34a, #22c55e);
+  color: white;
+}
+
+.submit-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ---------- Image Preview ---------- */
+.preview {
+  width: 100%;
+  max-width: 220px;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- File Info ---------- */
+.file-info {
+  color: #f9fafb;
+  font-size: 14px;
+  margin-top: 8px;
+  background: rgba(243, 244, 246, 0.2);
+  padding: 8px 10px;
+  border-radius: 8px;
+}

@@ -1,0 +1,154 @@
+/* src/Styles/Offer.css */
+
+.offer-page {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  backdrop-filter: blur(4px);
+  padding: 3rem 2rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Header Styling */
+.offer-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1rem 2rem;
+  border-radius: 1rem;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.1);
+}
+
+.offer-header h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ffcc00, #ffffff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.sparkle-icon {
+  color: #ffcc00;
+  width: 36px;
+  height: 36px;
+  animation: sparkle 2s infinite;
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* Offer Grid */
+.offer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Offer Card */
+.offer-card {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.offer-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.2);
+}
+
+.bike-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: #ffcc00;
+  color: black;
+  padding: 0.6rem;
+  border-radius: 50%;
+  box-shadow: 0 3px 8px rgba(255, 204, 0, 0.3);
+}
+
+/* Texts */
+.offer-content h3 {
+  color: #ffcc00;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.offer-content p {
+  color: #fff;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+/* Images */
+.offer-content img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-top: 10px;
+  transition: transform 0.3s ease;
+}
+
+.offer-content img:hover {
+  transform: scale(1.05);
+}
+
+/* Code Box */
+.offer-code {
+  border: 2px dashed #ffcc00;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-family: monospace;
+  text-align: center;
+  padding: 0.75rem;
+  border-radius: 8px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.offer-code:hover {
+  background: rgba(255, 204, 0, 0.2);
+  transform: scale(1.03);
+}
+
+.copy-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #ffcc00;
+}
+
+.copied-text {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.75rem;
+  background: black;
+  color: #ffcc00;
+  padding: 2px 8px;
+  border-radius: 4px;
+}

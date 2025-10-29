@@ -1,0 +1,230 @@
+/* Background layout */
+.booking-page {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(3px);
+}
+
+/* Glassmorphic card */
+.booking-card {
+  width: 90%;
+  max-width: 600px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Title */
+.form-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #00b4ff;
+  margin-bottom: 25px;
+}
+
+/* Step indicator */
+.step-indicator {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 25px;
+}
+
+.step {
+  flex: 1;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  color: #d1d5db;
+  font-weight: 600;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 0 4px;
+  transition: 0.3s ease;
+}
+
+.active-step {
+  background: linear-gradient(90deg, #00b4ff, #2563eb);
+  color: white;
+}
+
+/* Inputs */
+.form-step label {
+  display: block;
+  margin: 10px 0 6px;
+  font-weight: 500;
+  color: #fff;
+}
+
+.form-step input,
+.form-step textarea {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  backdrop-filter: blur(3px);
+}
+
+.form-step input:focus,
+.form-step textarea:focus {
+  outline: none;
+  border: 1px solid #00b4ff;
+  box-shadow: 0 0 6px #00b4ff;
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.back-btn {
+  background-color: #555;
+  color: white;
+}
+
+.back-btn:hover {
+  background-color: #777;
+}
+
+.next-btn {
+  background: linear-gradient(90deg, #00b4ff, #2563eb);
+  color: white;
+}
+
+.next-btn:hover {
+  opacity: 0.9;
+}
+
+.submit-btn {
+  background: linear-gradient(90deg, #16a34a, #15803d);
+  color: white;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}
+
+/* File preview */
+.preview {
+  width: 100%;
+  max-width: 200px;
+  height: auto;
+  border-radius: 8px;
+  margin-top: 8px;
+  margin-bottom: 10px;
+}
+
+/* Note section */
+.note {
+  margin-top: 15px;
+  background: rgba(255, 255, 0, 0.15);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.5;
+  border-left: 4px solid #ffd500;
+}
+
+.note .question {
+  color: #ffd500;
+  font-weight: bold;
+}
+
+.note .answer {
+  color: #fff;
+}
+
+
+/* ---------------------- */
+/* Stripe Card Payment UI */
+/* ---------------------- */
+
+/* Card input container */
+.stripe-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 14px 16px;
+  border-radius: 8px;
+  margin-top: 12px;
+  color: #fff;
+  font-size: 16px;
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Style for Stripe's internal input fields */
+.StripeElement {
+  width: 100%;
+  padding: 12px;
+  color: #fff;
+  background: transparent;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+
+.StripeElement--focus {
+  border-color: #00b4ff;
+  box-shadow: 0 0 6px #00b4ff;
+}
+
+.StripeElement--invalid {
+  border-color: #ef4444;
+}
+
+.payment-status {
+  margin-top: 16px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 15px;
+  color: #00b4ff;
+}
+
+.payment-status.error {
+  color: #ef4444;
+}
+
+.payment-status.success {
+  color: #16a34a;
+}
+
+/* Payment button */
+.pay-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: linear-gradient(90deg, #00b4ff, #2563eb);
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.pay-btn:hover {
+  opacity: 0.9;
+}

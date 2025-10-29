@@ -1,0 +1,162 @@
+.footer {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+.footer-overlay {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 60px 20px 20px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1 1 250px;
+  min-width: 250px;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.footer-section:hover {
+  transform: translateY(-5px);
+}
+
+.footer-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: #ffcc00;
+  margin-bottom: 15px;
+}
+
+.footer-section h3 {
+  color: #ffcc00;
+  margin-bottom: 15px;
+  font-size: 18px;
+  position: relative;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin: 8px 0;
+}
+
+.footer-section ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: #ffcc00;
+}
+
+.footer-section p {
+  color: #ddd;
+  font-size: 14px;
+  margin: 8px 0;
+}
+
+/* Feedback Form */
+.feedback-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.feedback-form input,
+.feedback-form textarea {
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+.feedback-form textarea {
+  resize: none;
+  height: 80px;
+}
+
+.feedback-form button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #ffcc00;
+  color: black;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.feedback-form button:hover {
+  background: #ffdb4d;
+  transform: scale(1.05);
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.social-icons a:hover {
+  background: #ffcc00;
+  color: black;
+  transform: scale(1.2);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  color: #aaa;
+  font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  .footer-section {
+    width: 100%;
+  }
+}
