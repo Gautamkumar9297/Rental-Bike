@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { Bike, Sparkles, Clipboard, Check } from "lucide-react";
 import "../Styles/Offer.css";
-import dash from "../assets/projectpic/dash.jpg"; // ✅ Background image
+import dash from "../assets/Projectpic/dash.jpg"; // ✅ Background image
 
 const offersData = [
   {
