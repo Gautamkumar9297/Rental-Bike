@@ -9,6 +9,7 @@ function Navbar() {
   const location = useLocation();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+ 
   // ✅ Check login status when route changes or localStorage updates
   useEffect(() => {
     const checkLoginStatus = () => {
@@ -36,6 +37,24 @@ function Navbar() {
     window.dispatchEvent(new Event("storage")); // 🔁 trigger Navbar update
   };
 
+  // ✅ Smooth scroll to footer feedback
+  const scrollToFeedback = () => {
+    const footer = document.getElementById("footer-feedback");
+    if (footer) {
+      footer.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/"); // if user not on home page, go home first
+      setTimeout(() => {
+        const footer = document.getElementById("footer-feedback");
+        if (footer) footer.scrollIntoView({ behavior: "smooth" });
+      }, 500);
+    }
+  };
+  
+   if (location.pathname.startsWith("/admin")) {
+    return null;
+  }
+
   return (
     <nav className="navbar">
       <div className="navbar-left">
@@ -54,6 +73,13 @@ function Navbar() {
           <li><Link to="/offer">Offers</Link></li>
           <li><Link to="/home">Bike Rentals</Link></li>
           <li><Link to="/list-bike">List Your Vehicle</Link></li>
+
+          {/* ✅ Feedback Button */}
+          <li>
+            <button onClick={scrollToFeedback} className="nav-link-feedback">
+              Feedback
+            </button>
+          </li>
 
           <li>
             {isLoggedIn ? (

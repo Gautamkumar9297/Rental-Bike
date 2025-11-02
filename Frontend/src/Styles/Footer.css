@@ -160,3 +160,40 @@
     width: 100%;
   }
 }
+
+/* Highlight animation when opened from navbar */
+.highlight {
+  animation: highlight 2s ease;
+}
+
+@keyframes highlight {
+  0% { box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.8); }
+  100% { box-shadow: none; }
+}
+
+/* Star rating style */
+.star-rating {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0;
+}
+
+/* Optional - feedback form spacing */
+.feedback-form input,
+.feedback-form textarea {
+  margin-bottom: 10px;
+}
+
+.feedback-form button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.feedback-form button:hover {
+  background-color: #45a049;
+}

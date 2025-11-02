@@ -13,9 +13,8 @@ import dash from "../assets/projectpic/dash.jpg";
 import { useNavigate } from "react-router-dom";
 
 // ✅ Stripe test publishable key
-const stripePromise = loadStripe(
-  
-);
+const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+
 
 export default function BikeBookingForm() {
   const navigate = useNavigate();
@@ -75,7 +74,7 @@ export default function BikeBookingForm() {
     }
   };
 
-  // ✅ UPDATED handleSubmit — clears form + redirects
+  // ✅ Submit booking form (after successful payment)
   const handleSubmit = async () => {
     setLoading(true);
     const data = new FormData();
@@ -87,7 +86,7 @@ export default function BikeBookingForm() {
       });
       alert("✅ Booking Successful!");
 
-      // ✅ Reset form and related states
+      // ✅ Reset form
       setFormData({
         name: "",
         email: "",
@@ -102,8 +101,6 @@ export default function BikeBookingForm() {
       setCoupon("");
       setDiscount(0);
       setStep(0);
-
-      // ✅ Redirect after reset
       navigate("/");
     } catch {
       alert("❌ Submission failed.");
@@ -279,11 +276,20 @@ function PaymentStep({
   const handlePayment = async () => {
     if (!stripe || !elements) return;
     try {
-      const { data } = await axios.post("http://localhost:5000/api/payment", {
-        amount,
-      });
+      const token = localStorage.getItem("token"); // get JWT
+
+      // ✅ Step 1: Create PaymentIntent (and save Pending to DB)
+      const { data } = await axios.post(
+        "http://localhost:5000/api/payment",
+        { amount },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       const card = elements.getElement(CardElement);
+
+      // ✅ Step 2: Confirm Payment via Stripe
       const result = await stripe.confirmCardPayment(data.clientSecret, {
         payment_method: {
           card,
@@ -291,11 +297,19 @@ function PaymentStep({
         },
       });
 
+      // ✅ Step 3: Handle result
       if (result.error) {
         alert("❌ Payment Failed: " + result.error.message);
       } else if (result.paymentIntent.status === "succeeded") {
         alert("✅ Payment Successful!");
-        await handleSubmit(); // ✅ Clear form and redirect
+
+        // ✅ Step 4: Update payment status to Completed in MongoDB
+        await axios.post("http://localhost:5000/api/payment/success", {
+          paymentIntentId: result.paymentIntent.id,
+        });
+
+        // ✅ Step 5: Submit booking form
+        await handleSubmit();
       }
     } catch (err) {
       console.error(err);

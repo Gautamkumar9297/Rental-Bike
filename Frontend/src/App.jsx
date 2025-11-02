@@ -4,7 +4,7 @@ import Navbar from './Components/Navbar';
 import Home from './Pages/Home';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
-import AdminDashboard from './Pages/Admin';
+import AdminDashboard from './Pages/AdminDashboard';
 import Offer from './Pages/Offer';  
 import ProtectedRoute from './Components/ProtectedRoute';
 import './App.css';
