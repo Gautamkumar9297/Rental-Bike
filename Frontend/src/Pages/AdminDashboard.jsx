@@ -17,7 +17,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import "../styles/AdminDashboard.css";
+import "../Styles/AdminDashboard.css";
 
 ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
 
