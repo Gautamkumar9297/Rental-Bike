@@ -1,6 +1,6 @@
 /* === Dashboard Page Background === */
 .dashboard-page {
-  background: url("../assets/projectpic/dash.jpg") no-repeat center center/cover;
+  background: url("../assets/Projectpic/dash.jpg") no-repeat center center/cover;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

@@ -7,7 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import FAQItem from "../Components/FAQItem";
 import "../Styles/UserDashboard.css";
-import dash from "../assets/projectpic/dash.jpg"; // ✅ Add background image import
+import dash from "../assets/Projectpic/dash.jpg"; // ✅ Add background image import
 
 // --- City Data ---
 const popularCities = [

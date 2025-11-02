@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import VehicleCard from "../Components/VehicleCard";
 import "../Styles/Home.css";
-import dash from "../assets/projectpic/dash.jpg"; // ✅ background image
+import dash from "../assets/Projectpic/dash.jpg"; // ✅ background image
 
 // Import images
 import bike1 from "../assets/projectpic/pic1.jpg";
