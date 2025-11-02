@@ -9,7 +9,7 @@ import {
   useElements,
 } from "@stripe/react-stripe-js";
 import "../Styles/BikeBookingForm.css";
-import dash from "../assets/projectpic/dash.jpg";
+import dash from "../assets/Projectpic/dash.jpg";
 import { useNavigate } from "react-router-dom";
 
 // ✅ Stripe test publishable key
