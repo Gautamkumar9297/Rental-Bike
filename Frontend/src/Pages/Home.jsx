@@ -6,18 +6,18 @@ import "../Styles/Home.css";
 import dash from "../assets/Projectpic/dash.jpg"; // ✅ background image
 
 // Import images
-import bike1 from "../assets/projectpic/pic1.jpg";
-import bike2 from "../assets/projectpic/pic2.jpg";
-import bike3 from "../assets/projectpic/pic3.jpg";
-import bike4 from "../assets/projectpic/pic4.jpg";
-import bike5 from "../assets/projectpic/pic5.jpg";
-import bike6 from "../assets/projectpic/pic6.jpg";
-import bike7 from "../assets/projectpic/pic7.webp";
-import bike8 from "../assets/projectpic/pic8.webp";
-import bike9 from "../assets/projectpic/pic9.webp";
-import bike10 from "../assets/projectpic/pic10.jpg";
-import bike11 from "../assets/projectpic/pic11.jpg";
-import bike12 from "../assets/projectpic/pic12.webp";
+import bike1 from "../assets/Projectpic/pic1.jpg";
+import bike2 from "../assets/Projectpic/pic2.jpg";
+import bike3 from "../assets/Projectpic/pic3.jpg";
+import bike4 from "../assets/Projectpic/pic4.jpg";
+import bike5 from "../assets/Projectpic/pic5.jpg";
+import bike6 from "../assets/Projectpic/pic6.jpg";
+import bike7 from "../assets/Projectpic/pic7.webp";
+import bike8 from "../assets/Projectpic/pic8.webp";
+import bike9 from "../assets/Projectpic/pic9.webp";
+import bike10 from "../assets/Projectpic/pic10.jpg";
+import bike11 from "../assets/Projectpic/pic11.jpg";
+import bike12 from "../assets/Projectpic/pic12.webp";
 
 const bikes = [
   { id: 1, name: "Hero Splendor", type: "Commuter", price: 50, location: "Ahmedabad", image: bike1, rating: 4.5, fuelType: "Petrol" },
