@@ -4,6 +4,7 @@ import "../Styles/MultiStepForm.css";
 
 export default function MultiStepForm() {
   const [step, setStep] = useState(0);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,6 +17,7 @@ export default function MultiStepForm() {
     aadhar: null,
   });
 
+   const API_URL = import.meta.env.VITE_API_URL;
   const handleChange = (e) => {
     const { name, value, files } = e.target;
     if (files) {
@@ -37,9 +39,8 @@ export default function MultiStepForm() {
       Object.entries(formData).forEach(([key, value]) => {
         data.append(key, value);
       });
-
       // ✅ Send to backend
-      const res = await axios.post("http://localhost:5000/api/registrations", data, {
+      const res = await axios.post(`${API_URL}/api/registrations`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 

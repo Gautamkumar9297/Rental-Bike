@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 // ✅ Stripe test publishable key
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
-
+const API_URL = import.meta.env.VITE_API_URL;
 
 export default function BikeBookingForm() {
   const navigate = useNavigate();
@@ -33,6 +33,7 @@ export default function BikeBookingForm() {
     purpose: "",
     aadhar: null,
   });
+
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -81,7 +82,7 @@ export default function BikeBookingForm() {
     Object.entries(formData).forEach(([key, value]) => data.append(key, value));
 
     try {
-      await axios.post("http://localhost:5000/api/bookings", data, {
+      await axios.post(`${API_URL}/api/bookings`, data, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       alert("✅ Booking Successful!");
@@ -280,7 +281,7 @@ function PaymentStep({
 
       // ✅ Step 1: Create PaymentIntent (and save Pending to DB)
       const { data } = await axios.post(
-        "http://localhost:5000/api/payment",
+        `${API_URL}/api/payment`,
         { amount },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -302,9 +303,8 @@ function PaymentStep({
         alert("❌ Payment Failed: " + result.error.message);
       } else if (result.paymentIntent.status === "succeeded") {
         alert("✅ Payment Successful!");
-
         // ✅ Step 4: Update payment status to Completed in MongoDB
-        await axios.post("http://localhost:5000/api/payment/success", {
+        await axios.post(`${API_URL}/api/payment/success`, {
           paymentIntentId: result.paymentIntent.id,
         });
 

@@ -19,6 +19,9 @@ const Footer = () => {
   const [loading, setLoading] = useState(false);
   const [highlight, setHighlight] = useState(false);
 
+ const API_URL = import.meta.env.VITE_API_URL;
+
+
 const handleSubmit = async (e) => {
   e.preventDefault();
   if (rating === 0) {
@@ -28,7 +31,7 @@ const handleSubmit = async (e) => {
 
   setLoading(true);
   try {
-    const response = await axios.post("http://localhost:5000/api/Feedback", {
+    const response = await axios.post(`${API_URL}/api/Feedback`, {
       name,
       email,
       message,

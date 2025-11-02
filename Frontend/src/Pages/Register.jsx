@@ -12,12 +12,13 @@ function Register() {
     password: "",
     role: "student", // default role
   });
+ const API_URL = import.meta.env.VITE_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post("http://localhost:5000/api/auth/register", formData);
+      const res = await axios.post(`${API_URL}/api/auth/register`, formData);
 
       if (res.data.message === "Registration successful") {
         alert("✅ Account created successfully!");
