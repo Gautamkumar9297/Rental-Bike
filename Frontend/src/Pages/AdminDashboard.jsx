@@ -43,14 +43,14 @@ const AdminDashboard = () => {
     fetchTransactions();
   }, []);
 
-  const fetchDashboard = async () => {
-    try {
-      const res = await axios.get("/admin/dashboard");
-      setStats(res.data);
-    } catch (err) {
-      console.error("Error fetching dashboard:", err);
-    }
-  };
+ const fetchDashboard = async () => {
+  try {
+    const res = await axios.get("/admin/dashboard");
+    setStats(res.data.stats); // ✅ FIXED
+  } catch (err) {
+    console.error("Error fetching dashboard:", err);
+  }
+};
 
   const fetchBookings = async () => {
     try {
@@ -108,23 +108,65 @@ const AdminDashboard = () => {
     labels: ["Users", "Bookings", "Payments", "Feedbacks"],
     datasets: [
       {
-        label: "Overview",
+        label: "Count",
         data: [
           stats.totalUsers,
           stats.totalBookings,
           stats.totalPayments,
           stats.totalFeedbacks,
         ],
-        backgroundColor: ["#38bdf8", "#34d399", "#fbbf24", "#f87171"],
-        borderRadius: 8,
+        backgroundColor: [
+          "rgba(59, 130, 246, 0.7)",
+          "rgba(16, 185, 129, 0.7)",
+          "rgba(245, 158, 11, 0.7)",
+          "rgba(239, 68, 68, 0.7)",
+        ],
+        borderColor: [
+          "rgba(59, 130, 246, 1)",
+          "rgba(16, 185, 129, 1)",
+          "rgba(245, 158, 11, 1)",
+          "rgba(239, 68, 68, 1)",
+        ],
+        borderWidth: 2,
+        borderRadius: 10,
+        hoverBackgroundColor: [
+          "rgba(59, 130, 246, 0.9)",
+          "rgba(16, 185, 129, 0.9)",
+          "rgba(245, 158, 11, 0.9)",
+          "rgba(239, 68, 68, 0.9)",
+        ],
       },
     ],
   };
 
   const chartOptions = {
     responsive: true,
-    plugins: { legend: { display: false } },
-    scales: { y: { beginAtZero: true } },
+    animation: {
+      duration: 1200,
+      easing: "easeOutBounce",
+    },
+    plugins: {
+      legend: { display: false },
+      tooltip: {
+        backgroundColor: "#1e293b",
+        titleColor: "#f8fafc",
+        bodyColor: "#f1f5f9",
+        padding: 10,
+        borderColor: "#334155",
+        borderWidth: 1,
+      },
+    },
+    scales: {
+      y: {
+        beginAtZero: true,
+        ticks: { color: "#475569", stepSize: 1 },
+        grid: { color: "rgba(203, 213, 225, 0.3)" },
+      },
+      x: {
+        ticks: { color: "#475569" },
+        grid: { display: false },
+      },
+    },
   };
 
   return (
@@ -162,7 +204,6 @@ const AdminDashboard = () => {
           </li>
         </ul>
 
-        {/* Logout button at bottom */}
         <button className="logout-btn" onClick={handleLogout}>
           <FaSignOutAlt /> Logout
         </button>
@@ -210,14 +251,17 @@ const AdminDashboard = () => {
               </div>
             </div>
 
-            {/* Graph Section */}
+            {/* Updated Graph Section */}
             <div className="chart-section">
-              <h2 className="chart-title">Performance Overview</h2>
-              <Bar data={chartData} options={chartOptions} />
+              <h2 className="chart-title">📊 System Performance Insights</h2>
+              <div className="chart-container">
+                <Bar data={chartData} options={chartOptions} />
+              </div>
             </div>
           </>
         )}
 
+        {/* Tables */}
         {activeTab === "bookings" && (
           <div className="table-section">
             <h2>All Bookings</h2>
@@ -293,7 +337,7 @@ const AdminDashboard = () => {
               <table>
                 <thead>
                   <tr>
-                    <th>User</th>
+                    <th>Name</th>
                     <th>Message</th>
                     <th>Date</th>
                   </tr>
@@ -301,9 +345,9 @@ const AdminDashboard = () => {
                 <tbody>
                   {feedbacks.map((f) => (
                     <tr key={f._id}>
-                      <td>{f.user?.name || "Anonymous"}</td>
+                      <td>{f.name || "Anonymous"}</td>
                       <td>{f.message}</td>
-                      <td>{new Date(f.createdAt).toLocaleDateString()}</td>
+                      <td>{f.email}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -326,9 +370,11 @@ const AdminDashboard = () => {
                   </tr>
                 </thead>
                 <tbody>
+                  
+
                   {transactions.map((t) => (
                     <tr key={t._id}>
-                      <td>{t.user?.name}</td>
+                      <td>{t.paymentIntentId}</td>
                       <td>₹{t.amount}</td>
                       <td>
                         <span className={`status status-${t.status}`}>{t.status}</span>

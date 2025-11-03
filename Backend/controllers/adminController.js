@@ -12,8 +12,8 @@ export const getDashboardStats = async (req, res) => {
     const totalFeedbacks = await Feedback.countDocuments();
 
     const recentBookings = await Booking.find()
-      .populate("user", "name email")
-      .populate("bike", "name")
+      .populate("name", "email")
+      .populate("purpose", "destination")
       .sort({ createdAt: -1 })
       .limit(6);
 
@@ -45,7 +45,7 @@ export const getAllFeedbacks = async (req, res) => {
 
 export const getAllTransactions = async (req, res) => {
   try {
-    const transactions = await Payment.find().populate("user", "name email").sort({ createdAt: -1 });
+    const transactions = await Payment.find().populate("user", "email").sort({ createdAt: -1 });
     res.json(transactions);
   } catch (err) {
     console.error("Transactions error:", err);

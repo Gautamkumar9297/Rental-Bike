@@ -1,5 +1,4 @@
-// src/Pages/BikeBookingForm.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { loadStripe } from "@stripe/stripe-js";
 import {
@@ -12,8 +11,14 @@ import "../Styles/BikeBookingForm.css";
 import dash from "../assets/Projectpic/dash.jpg";
 import { useNavigate } from "react-router-dom";
 
-// ✅ Stripe test publishable key
-const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+// ✅ Stripe public key (supports both variable names)
+const stripeKey =
+  import.meta.env.VITE_STRIPE_PUBLIC_KEY || import.meta.env.VITE_STRIPE_KEY;
+if (!stripeKey)
+  console.warn(
+    "⚠️ Stripe public key missing. Please check .env (VITE_STRIPE_PUBLIC_KEY)"
+  );
+const stripePromise = loadStripe(stripeKey);
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function BikeBookingForm() {
@@ -33,7 +38,6 @@ export default function BikeBookingForm() {
     purpose: "",
     aadhar: null,
   });
-
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -75,7 +79,7 @@ export default function BikeBookingForm() {
     }
   };
 
-  // ✅ Submit booking form (after successful payment)
+  // ✅ Submit booking form (after payment success)
   const handleSubmit = async () => {
     setLoading(true);
     const data = new FormData();
@@ -87,7 +91,7 @@ export default function BikeBookingForm() {
       });
       alert("✅ Booking Successful!");
 
-      // ✅ Reset form
+      // reset form
       setFormData({
         name: "",
         email: "",
@@ -103,12 +107,19 @@ export default function BikeBookingForm() {
       setDiscount(0);
       setStep(0);
       navigate("/");
-    } catch {
+    } catch (err) {
+      console.error(err);
       alert("❌ Submission failed.");
     } finally {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    return () => {
+      if (formData.aadhar) URL.revokeObjectURL(formData.aadhar);
+    };
+  }, [formData.aadhar]);
 
   return (
     <div className="booking-page" style={{ backgroundImage: `url(${dash})` }}>
@@ -253,6 +264,7 @@ export default function BikeBookingForm() {
               applyCoupon={applyCoupon}
               prevStep={prevStep}
               handleSubmit={handleSubmit}
+              loading={loading}
             />
           </Elements>
         )}
@@ -270,16 +282,21 @@ function PaymentStep({
   applyCoupon,
   prevStep,
   handleSubmit,
+  loading,
 }) {
   const stripe = useStripe();
   const elements = useElements();
 
+  useEffect(() => {
+    console.log("Stripe ready?", !!stripe, "Elements ready?", !!elements);
+  }, [stripe, elements]);
+
   const handlePayment = async () => {
     if (!stripe || !elements) return;
     try {
-      const token = localStorage.getItem("token"); // get JWT
+      const token = localStorage.getItem("token");
 
-      // ✅ Step 1: Create PaymentIntent (and save Pending to DB)
+      // ✅ Create PaymentIntent
       const { data } = await axios.post(
         `${API_URL}/api/payment`,
         { amount },
@@ -290,7 +307,7 @@ function PaymentStep({
 
       const card = elements.getElement(CardElement);
 
-      // ✅ Step 2: Confirm Payment via Stripe
+      // ✅ Confirm payment
       const result = await stripe.confirmCardPayment(data.clientSecret, {
         payment_method: {
           card,
@@ -298,17 +315,13 @@ function PaymentStep({
         },
       });
 
-      // ✅ Step 3: Handle result
       if (result.error) {
         alert("❌ Payment Failed: " + result.error.message);
       } else if (result.paymentIntent.status === "succeeded") {
         alert("✅ Payment Successful!");
-        // ✅ Step 4: Update payment status to Completed in MongoDB
         await axios.post(`${API_URL}/api/payment/success`, {
           paymentIntentId: result.paymentIntent.id,
         });
-
-        // ✅ Step 5: Submit booking form
         await handleSubmit();
       }
     } catch (err) {
@@ -344,7 +357,7 @@ function PaymentStep({
           options={{
             style: {
               base: {
-                color: "#fff",
+                color: "#ffffff",
                 fontSize: "16px",
                 "::placeholder": { color: "#bbb" },
               },
@@ -358,7 +371,11 @@ function PaymentStep({
         <button className="back-btn" onClick={prevStep}>
           ← Back
         </button>
-        <button className="pay-btn" onClick={handlePayment}>
+        <button
+          className="pay-btn"
+          onClick={handlePayment}
+          disabled={!stripe || loading}
+        >
           💰 Pay ₹{amount} & Submit
         </button>
       </div>

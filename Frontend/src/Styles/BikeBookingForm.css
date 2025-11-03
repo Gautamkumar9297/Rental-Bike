@@ -1,4 +1,4 @@
-/* Background layout */
+/* Page background */
 .booking-page {
   background-size: cover;
   background-position: center;
@@ -38,7 +38,6 @@
   justify-content: space-between;
   margin-bottom: 25px;
 }
-
 .step {
   flex: 1;
   text-align: center;
@@ -50,7 +49,6 @@
   margin: 0 4px;
   transition: 0.3s ease;
 }
-
 .active-step {
   background: linear-gradient(90deg, #00b4ff, #2563eb);
   color: white;
@@ -63,7 +61,6 @@
   font-weight: 500;
   color: #fff;
 }
-
 .form-step input,
 .form-step textarea {
   width: 100%;
@@ -75,9 +72,7 @@
   box-sizing: border-box;
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  backdrop-filter: blur(3px);
 }
-
 .form-step input:focus,
 .form-step textarea:focus {
   outline: none;
@@ -91,7 +86,6 @@
   justify-content: space-between;
   margin-top: 20px;
 }
-
 button {
   border: none;
   border-radius: 8px;
@@ -100,31 +94,37 @@ button {
   cursor: pointer;
   transition: 0.2s ease;
 }
-
 .back-btn {
   background-color: #555;
   color: white;
 }
-
 .back-btn:hover {
   background-color: #777;
 }
-
 .next-btn {
   background: linear-gradient(90deg, #00b4ff, #2563eb);
   color: white;
 }
-
 .next-btn:hover {
   opacity: 0.9;
 }
-
-.submit-btn {
-  background: linear-gradient(90deg, #16a34a, #15803d);
-  color: white;
+.pay-btn {
+  width: 100%;
+  margin-top: 20px;
+  padding: 12px;
+  background: linear-gradient(90deg, #00b4ff, #2563eb);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
-
-.submit-btn:hover {
+.pay-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.pay-btn:hover {
   opacity: 0.9;
 }
 
@@ -149,82 +149,54 @@ button {
   border-left: 4px solid #ffd500;
 }
 
-.note .question {
-  color: #ffd500;
-  font-weight: bold;
+/* Coupon section */
+.coupon-section {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 15px;
 }
-
-.note .answer {
-  color: #fff;
-}
-
-
-/* ---------------------- */
-/* Stripe Card Payment UI */
-/* ---------------------- */
-
-/* Card input container */
-.stripe-card {
+.coupon-section input {
+  flex: 1;
   background: rgba(255, 255, 255, 0.1);
-  padding: 14px 16px;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px;
+  border: none;
+}
+.apply-btn {
+  background: linear-gradient(90deg, #16a34a, #15803d);
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.apply-btn:hover {
+  opacity: 0.9;
+}
+
+/* Stripe Card Element Box */
+.card-box {
+  background: rgba(255, 255, 255, 0.06);
+  padding: 12px;
   border-radius: 8px;
   margin-top: 12px;
-  color: #fff;
-  font-size: 16px;
-  backdrop-filter: blur(3px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-height: 48px;
+  box-sizing: border-box;
 }
 
-/* Style for Stripe's internal input fields */
+/* Stripe element styling */
 .StripeElement {
   width: 100%;
-  padding: 12px;
-  color: #fff;
+  padding: 10px 12px;
   background: transparent;
   font-size: 16px;
-  letter-spacing: 0.5px;
+  color: #fff;
+  min-height: 34px;
 }
-
 .StripeElement--focus {
   border-color: #00b4ff;
   box-shadow: 0 0 6px #00b4ff;
 }
-
 .StripeElement--invalid {
   border-color: #ef4444;
-}
-
-.payment-status {
-  margin-top: 16px;
-  text-align: center;
-  font-weight: 600;
-  font-size: 15px;
-  color: #00b4ff;
-}
-
-.payment-status.error {
-  color: #ef4444;
-}
-
-.payment-status.success {
-  color: #16a34a;
-}
-
-/* Payment button */
-.pay-btn {
-  width: 100%;
-  margin-top: 20px;
-  padding: 12px;
-  background: linear-gradient(90deg, #00b4ff, #2563eb);
-  border: none;
-  border-radius: 8px;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s ease;
-}
-
-.pay-btn:hover {
-  opacity: 0.9;
 }
